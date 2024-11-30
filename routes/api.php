@@ -6,6 +6,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\StoryController;
+
 
 
 /*
@@ -52,4 +54,13 @@ Route::prefix('news')->group(function () {
     Route::put('{id}', [NewsController::class, 'update']);
     Route::delete('{id}', [NewsController::class, 'destroy']);
 });
+
+Route::prefix('stories')->group(function () {
+    Route::get('/', [StoryController::class, 'index']);
+    Route::get('{id}', [StoryController::class, 'show']);
+    Route::post('/', [StoryController::class, 'store']);
+    Route::put('{id}', [StoryController::class, 'update']);
+    Route::delete('{id}', [StoryController::class, 'destroy']);
+});
+
 
