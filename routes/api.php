@@ -7,7 +7,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\StoryController;
-
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\StudentAnswerController;
 
 
 /*
@@ -62,5 +64,30 @@ Route::prefix('stories')->group(function () {
     Route::put('{id}', [StoryController::class, 'update']);
     Route::delete('{id}', [StoryController::class, 'destroy']);
 });
+
+Route::prefix('exams')->group(function () {
+    Route::get('/', [ExamController::class, 'index']);
+    Route::get('{id}', [ExamController::class, 'show']);
+    Route::post('/', [ExamController::class, 'store']);
+    Route::delete('{id}', [ExamController::class, 'destroy']);
+});
+
+Route::prefix('exams/{exam_id}/questions')->group(function () {
+    Route::get('/', [QuestionController::class, 'index']);
+    Route::get('{id}', [QuestionController::class, 'show']);
+    Route::post('/', [QuestionController::class, 'store']);
+    Route::put('{id}', [QuestionController::class, 'update']);
+    Route::delete('{id}', [QuestionController::class, 'destroy']);
+});
+
+Route::prefix('exams/{exam_id}/students/{student_id}/answers')->group(function () {
+    Route::get('/', [StudentAnswerController::class, 'index']);
+    Route::post('/', [StudentAnswerController::class, 'store']);
+    Route::put('{id}', [StudentAnswerController::class, 'update']);
+    Route::delete('{id}', [StudentAnswerController::class, 'destroy']);
+});
+
+
+
 
 
